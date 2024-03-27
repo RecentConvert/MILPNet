@@ -221,8 +221,8 @@ def piecewise_pump(p1, pump):
     return brackets, H
 
 def piecewise_pipe(p2, results, pipe, K, range_Qp = None):
-    largest_q = np.max(results.link['flowrate'].loc[:,pipe])
-    smallest_q = np.min(results.link['flowrate'].loc[:,pipe])
+    largest_q = np.max(results.link['flowrate'])
+    smallest_q = np.min(results.link['flowrate'])
     q_bound = max(abs(largest_q), abs(smallest_q))
     if range_Qp != None:
         q_bound = q_bound*(1+range_Qp)
@@ -705,10 +705,10 @@ def run_gurobi(inp_file, no_ts = 3, num_pipe_seg = 3, num_pump_seg = 5,
     lbounds_wvalves, ubounds_wvalves = [], []
     lbounds_htanks, ubounds_htanks = [], []
     
-    largest_q = max(np.max(results.link['flowrate']))
-    smallest_q = min(np.min(results.link['flowrate']))
+    largest_q = np.max(results.link['flowrate'])
+    smallest_q = np.min(results.link['flowrate'])
     q_bound = max(abs(largest_q), abs(smallest_q))
-    h_bound = max(np.max(results.node['head']))
+    h_bound = np.max(results.node['head'])
     
     for i in range(num_pipes):
         lbounds_qpipes.append(-2 * q_bound)
