@@ -17,7 +17,7 @@ t1 = time.time()
 
 no_ts = 12
 ob_fn = 'diurnal'
-inp_file = 'Networks/Net3_delBP_2hr.inp'
+inp_file = 'Networks/Net1_casestudy2.inp'
 
 wn = wntr.network.WaterNetworkModel(inp_file)
 sim = wntr.sim.EpanetSimulator(wn)
